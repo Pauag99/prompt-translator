@@ -88,6 +88,26 @@ VALIDACION EJECUTADA:
 - Suite unitaria reforzada:
   Resultado: 13 tests pasados
 
+- Benchmark complejo agregado:
+  - 40 casos avanzados en 14 categorias.
+  - Casos de arquitectura, seguridad, datos, ML, DevOps, producto,
+    desarrollo, migracion, comunicacion, cumplimiento y adversariales.
+  - Metricas de calidad, cobertura conceptual, supuestos prohibidos y tiempo.
+  - Informes JSON comparables entre versiones.
+
+- Mejoras descubiertas mediante benchmark complejo:
+  - equivalencias semanticas para reducir falsos negativos.
+  - deteccion correcta de supuestos prohibidos negados.
+  - tratamiento explicito de requisitos imposibles o contradictorios.
+  - rechazo seguro de solicitudes de credenciales reales.
+  - proteccion ante afirmaciones sin datos y sesgo de confirmacion.
+
+- Validacion actual:
+  - Suite automatica: 26 tests pasados.
+  - Benchmark completo inicial: 36/40 aprobados.
+  - Los cuatro fallos iniciales fueron corregidos y verificados.
+  - Benchmark adversarial final: 4/4 aprobados.
+
 ESTADO ACTUAL:
 - Ollama: OK
 - Mistral: OK

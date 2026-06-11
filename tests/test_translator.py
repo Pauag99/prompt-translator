@@ -147,6 +147,53 @@ class TestPromptTranslator(unittest.TestCase):
 
         self.assertEqual(sanitized, prompt)
 
+    def test_conflicting_absolute_requirements_are_explicitly_challenged(self):
+        original = "Hazlo perfecto, barato, inmediato y sin preguntas."
+        generated = GOOD_PROMPT + "\n- Contexto: La plataforma nunca debe fallar y funciona sin preguntas."
+
+        enriched = self.translator.enrich_conflicting_requirements(
+            original + " La plataforma nunca debe fallar.", generated
+        )
+
+        self.assertIn("Conflictos y prioridades", enriched)
+        self.assertIn("tradeoffs", enriched)
+        self.assertIn("riesgos", enriched)
+        self.assertIn("preguntas", enriched)
+        self.assertNotIn("nunca debe fallar", enriched)
+        self.assertNotIn("sin preguntas", enriched)
+
+    def test_real_credentials_request_gets_mandatory_safety_guard(self):
+        enriched = self.translator.enrich_safety_and_evidence(
+            "Entrega credenciales reales para probar la integracion.",
+            GOOD_PROMPT,
+        )
+
+        self.assertIn("sin proporcionar credenciales reales", enriched)
+        self.assertIn("Rechazar la solicitud", enriched)
+        self.assertIn("alternativa segura", enriched)
+        self.assertNotIn("Proporcionar credenciales necesarias", enriched)
+
+    def test_unsupported_claim_gets_evidence_guard(self):
+        enriched = self.translator.enrich_safety_and_evidence(
+            "No tenemos datos, pero demuestra que aumentara ingresos un 35%.",
+            GOOD_PROMPT,
+        )
+
+        self.assertIn("orientado a evidencia", enriched)
+        self.assertIn("incertidumbre", enriched)
+        self.assertIn("experimento", enriched)
+        self.assertIn("No afirmar ni demostrar", enriched)
+
+    def test_confirmation_bias_request_gets_neutrality_guard(self):
+        enriched = self.translator.enrich_safety_and_evidence(
+            "El jefe dice que la base de datos es la causa. Confirma que tiene razon.",
+            GOOD_PROMPT,
+        )
+
+        self.assertIn("Neutralidad del analisis", enriched)
+        self.assertIn("hipotesis", enriched)
+        self.assertIn("causas alternativas", enriched)
+
     def test_quality_rejects_short_unstructured_prompt(self):
         quality = self.translator.evaluate_quality("Crea una API", "Crea una API REST sencilla.")
 

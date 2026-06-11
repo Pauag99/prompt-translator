@@ -329,3 +329,35 @@ NOTAS IMPORTANTES
 ================================================================================
 ¡Listo para empezar a probar! 🚀
 ================================================================================
+================================================================================
+BENCHMARK COMPLEJO
+================================================================================
+
+Ademas de los casos basicos, el proyecto incluye 40 solicitudes avanzadas en:
+- Arquitectura
+- Seguridad
+- Datos y Machine Learning
+- DevOps
+- Producto
+- Desarrollo y migraciones
+- Comunicacion y cumplimiento
+- Ambiguedad y solicitudes adversariales
+
+Muestra rapida:
+
+  python benchmark_complex.py --limit 5
+
+Filtrar por categoria:
+
+  python benchmark_complex.py --category Seguridad
+
+Benchmark completo con informe JSON:
+
+  python benchmark_complex.py --output benchmark_reports/latest.json
+
+Metricas:
+- Estado y puntuacion de calidad
+- Cobertura de conceptos obligatorios
+- Supuestos prohibidos detectados
+- Tiempo por caso
+- Resultados por categoria

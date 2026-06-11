@@ -90,6 +90,31 @@ Estado esperado:
 - `validate_setup.py`: 6/6 validaciones pasadas
 - `pytest`: tests pasados
 
+## Benchmark complejo
+
+El proyecto incluye 40 casos avanzados con ambiguedad, restricciones,
+supuestos prohibidos y solicitudes adversariales.
+
+Ejecutar una muestra rapida:
+
+```bash
+python benchmark_complex.py --limit 5
+```
+
+Ejecutar una categoria:
+
+```bash
+python benchmark_complex.py --category Seguridad
+```
+
+Ejecutar todos los casos y guardar un informe:
+
+```bash
+python benchmark_complex.py --output benchmark_reports/latest.json
+```
+
+El informe mide calidad, cobertura de conceptos, supuestos prohibidos y tiempos.
+
 ## Estructura
 
 ```text
@@ -101,6 +126,7 @@ prompt-translator/
 │   ├── test_translator.py
 │   └── test_cases.py
 ├── demo.py
+├── benchmark_complex.py
 ├── validate_setup.py
 ├── setup_new_pc.bat
 ├── install_mistral.bat
