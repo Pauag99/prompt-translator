@@ -1,0 +1,107 @@
+================================================================================
+                         START HERE - PROMPT TRANSLATOR
+================================================================================
+
+Si vas a preparar este proyecto en otro PC, empieza por:
+
+   QUICKSTART.txt
+
+Ese archivo contiene el flujo recomendado para Windows, macOS y Linux.
+
+
+WINDOWS - CAMINO RECOMENDADO
+================================================================================
+
+1. Instala Python 3.10+:
+   https://www.python.org/downloads/
+
+2. Instala Ollama:
+   https://ollama.com/download
+
+3. Copia la carpeta `prompt-translator` al nuevo PC.
+
+4. Abre PowerShell dentro de la carpeta.
+
+5. Ejecuta:
+
+   .\setup_new_pc.bat
+
+6. Cuando termine, usa:
+
+   .\.venv\Scripts\python.exe demo.py
+
+
+MAC/LINUX - CAMINO RECOMENDADO
+================================================================================
+
+1. Instala Python 3.10+.
+
+2. Instala Ollama:
+   https://ollama.com/download
+
+3. Abre terminal dentro del proyecto.
+
+4. Ejecuta:
+
+   python3 -m venv .venv
+   source .venv/bin/activate
+   python -m pip install --upgrade pip
+   python -m pip install -r requirements.txt
+   ollama pull mistral
+   python validate_setup.py
+   python demo.py
+
+
+USO DIARIO
+================================================================================
+
+Si Ollama no responde:
+
+   ollama serve
+
+En otra terminal:
+
+   python demo.py
+
+
+ARCHIVOS IMPORTANTES
+================================================================================
+
+- QUICKSTART.txt: guia rapida para otro PC
+- SETUP.txt: instalacion detallada
+- README.md: resumen del proyecto
+- setup_new_pc.bat: setup completo para Windows
+- install_mistral.bat: solo descarga/verifica Mistral en Windows
+- install_mistral.sh: solo descarga/verifica Mistral en macOS/Linux
+- validate_setup.py: diagnostico del entorno
+- demo.py: aplicacion interactiva
+
+
+VALIDACION ESPERADA
+================================================================================
+
+   python validate_setup.py
+
+Debe mostrar:
+
+   Resultado: 6/6 validaciones pasadas
+
+Tests:
+
+   python -m pytest
+
+
+NOTAS PARA COPIAR A OTRO PC
+================================================================================
+
+Copia la carpeta del proyecto, pero no hace falta copiar:
+- .venv/
+- __pycache__/
+- .pytest_cache/
+- modelos de Ollama
+
+Cada PC debe instalar sus dependencias y descargar el modelo con:
+
+   ollama pull mistral
+
+================================================================================

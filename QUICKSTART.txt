@@ -1,0 +1,249 @@
+================================================================================
+                 QUICKSTART - PROMPT TRANSLATOR EN OTRO PC
+================================================================================
+
+Objetivo:
+Preparar este proyecto desde cero en otro ordenador y dejarlo listo para usar con
+Ollama + Mistral 7B.
+
+Este proyecto funciona 100% local. Solo necesita internet para instalar paquetes
+y descargar el modelo de Ollama la primera vez.
+
+
+REQUISITOS DEL NUEVO PC
+================================================================================
+
+Minimos:
+- Windows 10/11, macOS o Linux
+- Python 3.10 o superior
+- 8 GB RAM minimo
+- 16 GB RAM recomendado para Mistral 7B
+- 8 GB libres en disco
+- Internet durante la instalacion inicial
+
+Software necesario:
+- Python: https://www.python.org/downloads/
+- Ollama: https://ollama.com/download
+
+IMPORTANTE EN WINDOWS:
+- Al instalar Python, marca "Add Python to PATH".
+- Tras instalar Ollama, reinicia PowerShell si el comando `ollama` no aparece.
+
+
+OPCION A - INSTALACION WINDOWS AUTOMATICA
+================================================================================
+
+1. Copia la carpeta `prompt-translator` al nuevo PC.
+
+2. Abre PowerShell dentro de la carpeta del proyecto:
+
+   cd ruta\al\prompt-translator
+
+3. Ejecuta:
+
+   .\setup_new_pc.bat
+
+El script hara esto:
+- Comprueba Python.
+- Crea un entorno virtual `.venv`.
+- Instala dependencias desde `requirements.txt`.
+- Comprueba Ollama.
+- Descarga `mistral` si hace falta.
+- Ejecuta `validate_setup.py`.
+
+Si todo va bien, al final podras usar:
+
+   .\.venv\Scripts\python.exe demo.py
+
+
+OPCION B - INSTALACION MANUAL WINDOWS
+================================================================================
+
+1. Copia la carpeta del proyecto al nuevo PC.
+
+2. Abre PowerShell en la carpeta:
+
+   cd ruta\al\prompt-translator
+
+3. Crea entorno virtual:
+
+   py -3 -m venv .venv
+
+4. Activa el entorno:
+
+   .\.venv\Scripts\activate
+
+5. Instala dependencias:
+
+   python -m pip install --upgrade pip
+   python -m pip install -r requirements.txt
+
+6. Descarga el modelo:
+
+   ollama pull mistral
+
+7. Valida la instalacion:
+
+   python validate_setup.py
+
+8. Ejecuta la demo:
+
+   python demo.py
+
+
+OPCION C - INSTALACION MANUAL MAC/LINUX
+================================================================================
+
+1. Copia la carpeta del proyecto al nuevo equipo.
+
+2. Abre terminal en la carpeta:
+
+   cd /ruta/al/prompt-translator
+
+3. Crea entorno virtual:
+
+   python3 -m venv .venv
+
+4. Activa el entorno:
+
+   source .venv/bin/activate
+
+5. Instala dependencias:
+
+   python -m pip install --upgrade pip
+   python -m pip install -r requirements.txt
+
+6. Descarga el modelo:
+
+   ollama pull mistral
+
+7. Valida:
+
+   python validate_setup.py
+
+8. Ejecuta:
+
+   python demo.py
+
+
+USO DIARIO
+================================================================================
+
+Normalmente Ollama se queda ejecutandose en segundo plano. Si no responde, abre
+una terminal y ejecuta:
+
+   ollama serve
+
+Luego, en otra terminal:
+
+Windows:
+
+   cd ruta\al\prompt-translator
+   .\.venv\Scripts\activate
+   python demo.py
+
+Mac/Linux:
+
+   cd /ruta/al/prompt-translator
+   source .venv/bin/activate
+   python demo.py
+
+Menu de la demo:
+1. Prueba rapida
+2. Pruebas completas
+3. Prueba individual
+4. Salir
+
+
+VALIDACION Y TESTS
+================================================================================
+
+Comprobar instalacion:
+
+   python validate_setup.py
+
+Ejecutar tests:
+
+   python -m pytest
+
+Resultado esperado:
+- validate_setup.py: 6/6 validaciones pasadas
+- pytest: tests pasados
+
+
+QUE SE DEBE COPIAR AL OTRO PC
+================================================================================
+
+Copia toda la carpeta `prompt-translator`, incluyendo:
+- backend/
+- tests/
+- demo.py
+- validate_setup.py
+- requirements.txt
+- setup_new_pc.bat
+- install_mistral.bat
+- README.md
+- QUICKSTART.txt
+- SETUP.txt
+
+No hace falta copiar:
+- .venv/
+- __pycache__/
+- modelos de Ollama
+
+Los modelos se descargan en el nuevo PC con:
+
+   ollama pull mistral
+
+
+PROBLEMAS COMUNES
+================================================================================
+
+Python no se reconoce:
+- Reinstala Python desde python.org.
+- Marca "Add Python to PATH".
+- Cierra y abre PowerShell de nuevo.
+
+Ollama no se reconoce:
+- Reinstala Ollama desde ollama.com/download.
+- Cierra y abre PowerShell.
+- En Windows tambien se detecta desde:
+  %LOCALAPPDATA%\Programs\Ollama\ollama.exe
+
+No se puede conectar con Ollama:
+- Ejecuta:
+  ollama serve
+- Vuelve a lanzar:
+  python validate_setup.py
+
+ModuleNotFoundError:
+- Activa el entorno virtual.
+- Reinstala dependencias:
+  python -m pip install -r requirements.txt
+
+Respuestas lentas:
+- La primera respuesta carga el modelo y puede tardar mas.
+- En Mistral 7B, 5-20 segundos por respuesta es normal.
+- Cierra apps pesadas si el PC tiene poca RAM.
+
+Memoria insuficiente:
+- Mistral 7B va mejor con 16 GB RAM.
+- Si el PC tiene 8 GB RAM, prueba un modelo mas pequeno:
+  ollama pull llama2
+
+
+ESTADO ACTUAL VALIDADO
+================================================================================
+
+En este PC el proyecto ya fue validado con:
+- Python 3.12.10
+- Ollama 0.30.6
+- mistral:latest
+- validate_setup.py: 6/6 OK
+- pytest: OK
+- demo rapida: 5/5 OK
+
+En otro PC debes repetir la instalacion porque Python, Ollama, dependencias y
+modelos no viajan dentro del proyecto.
+
+================================================================================

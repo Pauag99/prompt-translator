@@ -1,0 +1,247 @@
+================================================================================
+                    MISTRAL 7B - GUÍA TÉCNICA COMPLETA
+================================================================================
+
+¿POR QUÉ MISTRAL?
+================================================================================
+
+Mistral 7B es el modelo recomendado para este proyecto porque:
+
+1. OPTIMIZADO PARA TU HARDWARE (16GB RAM)
+   ✓ Usa 8-10GB RAM, dejando 6GB para el sistema
+   ✓ No causa ralentizaciones en portátil
+   ✓ Estable y predecible en consumo
+
+2. EXCELENTE PARA PROMPTS TÉCNICOS
+   ✓ Entiende instrucciones complejas y matizadas
+   ✓ Muy preciso en estructura y claridad
+   ✓ Ideal para contextos profesionales
+   ✓ Mantiene contexto largo correctamente
+
+3. VELOCIDAD PRÁCTICO
+   ✓ 5-15 segundos por respuesta típica
+   ✓ Bueno para uso intensivo en trabajo
+   ✓ No hace esperar demasiado
+   ✓ Eficiente en portátil (no sobrecalienta)
+
+4. CALIDAD PROFESIONAL
+   ✓ Mejor ratio calidad/velocidad
+   ✓ Menos alucinaciones que modelos pequeños
+   ✓ Excelente en razonamiento
+   ✓ Sigue instrucciones precisamente
+
+
+ESPECIFICACIONES TÉCNICAS
+================================================================================
+
+Modelo: Mistral 7B
+- Base: Transformers de 7 mil millones de parámetros
+- Contexto: 8192 tokens (puede procesar textos largos)
+- Tipo: Chat optimizado (fine-tuned para instrucciones)
+- Licencia: Abierto (puedes usarlo comercialmente)
+
+Tamaño y Descarga:
+- Tamaño del modelo: ~4 GB descargado
+- Tiempo de descarga: 10-15 minutos (depende de conexión)
+- Ubicación: C:\Users\[tu_usuario]\.ollama\models\mistral
+
+Consumo de Recursos:
+- RAM utilizada: 8-10 GB
+- VRAM (si tienes GPU): 0 GB (usa CPU)
+- CPU: 1-2 núcleos (puede usar más para paralelizar)
+- Almacenamiento: ~4.3 GB
+
+Rendimiento:
+- Tokens por segundo: 10-25 (en portátil típico)
+- Latencia primera respuesta: 2-5 segundos
+- Respuesta típica: 5-15 segundos
+
+
+CONFIGURACIÓN OPTIMIZADA PARA TI
+================================================================================
+
+En backend/config.py encontrarás estos parámetros:
+
+num_predict: 500
+  - Máximo número de tokens en la salida
+  - 500 es suficiente para prompts (200-300 palabras)
+  - Limita respuestas sin causar truncado
+
+temperature: 0.7
+  - Controla creatividad (0.0 = determinista, 1.0 = muy creativo)
+  - 0.7 es perfecto para prompts (consistente pero no robótico)
+  - 0.5 si quieres más determinista
+  - 0.9 si quieres más variación
+
+top_p: 0.9
+  - Diversidad en selección de tokens
+  - 0.9 es balance entre consistencia y variedad
+  - Más bajo (0.7) = más consistente
+  - Más alto (0.95) = más variado
+
+repeat_penalty: 1.1
+  - Penaliza repeticiones innecesarias
+  - 1.1 es suave pero efectivo
+  - 1.5+ si ves muchas repeticiones
+
+
+CÓMO CAMBIAR A OTRO MODELO
+================================================================================
+
+Si quieres probar otros modelos (sin desinstalar Mistral):
+
+1. Descargar otro modelo:
+   ollama pull llama2
+   ollama pull neural-chat
+
+2. Cambiar en el código (backend/translator.py):
+   translator = PromptTranslator(model="llama2")
+
+3. Ejecutar normalmente
+
+
+MODELOS ALTERNATIVOS DISPONIBLES
+================================================================================
+
+LLAMA 2 7B (Alternativa más rápida)
+  - Ventajas: Más rápido, buen consumo RAM
+  - Desventajas: Menos preciso que Mistral
+  - Mejor para: Rapidez sobre precisión
+  - Recomendado si: Necesitas muchas respuestas rápidas
+
+NEURAL-CHAT 7B (Para conversaciones)
+  - Ventajas: Muy bueno en conversación, amigable
+  - Desventajas: Menos preciso en tareas técnicas
+  - Mejor para: Chat y explicaciones
+  - Recomendado si: Usas mucho conversación
+
+DOLPHIN-MIXTRAL (Máxima calidad)
+  - Ventajas: Mejor calidad de respuestas, muy preciso
+  - Desventajas: Requiere 16-20GB RAM, muy lento (30-60s)
+  - Mejor para: Máxima calidad sin importar tiempo
+  - Recomendado si: Calidad es lo único importante
+
+
+OPTIMIZACIONES ADICIONALES
+================================================================================
+
+Si quieres optimizar Mistral más:
+
+1. Para más velocidad:
+   - Reduce num_predict a 300
+   - Reduce temperature a 0.5
+   - Baja top_p a 0.8
+
+2. Para más precisión:
+   - Aumenta num_predict a 700
+   - Baja temperature a 0.5
+   - Mantén top_p en 0.9
+
+3. Para más creatividad:
+   - Aumenta temperature a 0.9
+   - Aumenta top_p a 0.95
+   - Aumenta num_predict a 1000
+
+
+COMANDOS ÚTILES DE OLLAMA
+================================================================================
+
+Ver modelos instalados:
+  ollama list
+
+Descargar modelo:
+  ollama pull mistral
+
+Eliminar modelo:
+  ollama rm mistral
+
+Ver información del modelo:
+  ollama show mistral
+
+Usar Mistral interactivamente:
+  ollama run mistral
+
+
+SOLUCIÓN DE PROBLEMAS
+================================================================================
+
+"El modelo es muy lento"
+  → Ejecutas Mistral en CPU (normal en portátil)
+  → Prueba con llama2 (más rápido)
+  → O reduce num_predict a 300
+
+"Respuestas repetidas"
+  → Aumenta repeat_penalty a 1.5
+  → O reduce temperature a 0.5
+
+"Respuestas demasiado cortass"
+  → Aumenta num_predict a 800
+  → O aumenta temperature a 0.8
+
+"Insuficiente memoria"
+  → Cierra otras aplicaciones
+  → Cambiar a llama2 (más pequeño)
+  → O aumenta RAM virtual en Windows
+
+"Mistral da respuestas extrañas"
+  → Es normal a veces (LLMs tienen este comportamiento)
+  → Intenta varias veces
+  → O cambia temperature/top_p
+
+
+MONITOREO DE RENDIMIENTO
+================================================================================
+
+Para ver cómo funciona Mistral en tu portátil:
+
+En Windows:
+1. Abre el Administrador de tareas (Ctrl+Shift+Esc)
+2. Busca "ollama" o "python"
+3. Mira RAM y CPU durante una traducción
+
+Indicadores normales:
+- RAM: 8-10GB
+- CPU: 30-80% (durante generación)
+- Batería: Consumo notable (normal)
+
+
+BENCHMARKS EN PORTÁTIL (16GB RAM)
+================================================================================
+
+Estas son velocidades aproximadas en tu portátil:
+
+Solicitud: "Hazme un script de web scraping"
+
+Tiempo esperado:
+- Tiempo de carga inicial: 2-3 segundos
+- Generación del prompt: 5-10 segundos
+- Tiempo total: 7-13 segundos
+
+Tokens generados: ~150-200 palabras
+
+
+MEJORAS FUTURAS
+================================================================================
+
+Fase 2: API REST
+  - Llamadas HTTP a Mistral
+  - Mejor para aplicaciones web
+  - Más flexible
+
+Fase 3: Aplicación de escritorio
+  - Interfaz gráfica con Electron
+  - Uso más intuitivo
+  - Historial local
+
+
+REFERENCIAS
+================================================================================
+
+- Mistral AI: https://mistral.ai
+- Documentación Mistral: https://docs.mistral.ai
+- Ollama: https://ollama.com/download
+- Parámetros LLM: https://huggingface.co/docs/transformers
+
+================================================================================
+Última actualización: Junio 2026
+================================================================================

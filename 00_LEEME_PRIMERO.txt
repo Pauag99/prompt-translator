@@ -1,0 +1,156 @@
+================================================================================
+                 LEE ESTO PRIMERO - PROMPT TRANSLATOR
+================================================================================
+
+Este proyecto traduce solicitudes en lenguaje natural a prompts optimizados
+usando Ollama + Mistral en local.
+
+El proyecto ya esta validado en este PC, pero si quieres llevarlo a otro equipo
+debes preparar ese equipo desde cero: Python, Ollama, dependencias y modelo.
+
+
+PARA PREPARARLO EN OTRO PC
+================================================================================
+
+Lee:
+
+   QUICKSTART.txt
+
+En Windows, la opcion mas simple es:
+
+   setup_new_pc.bat
+
+Pasos resumidos:
+
+1. Instala Python 3.10+.
+2. Instala Ollama.
+3. Copia la carpeta `prompt-translator`.
+4. Ejecuta `setup_new_pc.bat` en Windows, o sigue `QUICKSTART.txt`.
+5. Valida con `python validate_setup.py`.
+6. Usa `python demo.py`.
+
+
+ARCHIVOS CLAVE
+================================================================================
+
+- QUICKSTART.txt
+  Guia rapida para instalar en otro PC.
+
+- SETUP.txt
+  Guia detallada de instalacion y solucion de problemas.
+
+- START_HERE.txt
+  Resumen corto para empezar.
+
+- CHECKLIST.txt
+  Lista de verificacion para no saltarte pasos.
+
+- README.md
+  Resumen tecnico del proyecto.
+
+- setup_new_pc.bat
+  Instalador completo para Windows:
+  crea `.venv`, instala dependencias, descarga Mistral y valida.
+
+- install_mistral.bat
+  Solo descarga/verifica Mistral en Windows.
+
+- install_mistral.sh
+  Solo descarga/verifica Mistral en macOS/Linux.
+
+- demo.py
+  Aplicacion interactiva.
+
+- validate_setup.py
+  Validador del entorno.
+
+
+QUE COPIAR AL OTRO PC
+================================================================================
+
+Copia la carpeta completa `prompt-translator`.
+
+No hace falta copiar:
+- .venv/
+- __pycache__/
+- .pytest_cache/
+- modelos de Ollama
+
+Cada PC debe crear su propio entorno virtual y descargar el modelo:
+
+   ollama pull mistral
+
+
+COMANDOS PRINCIPALES
+================================================================================
+
+Windows automatico:
+
+   .\setup_new_pc.bat
+
+Windows manual:
+
+   py -3 -m venv .venv
+   .\.venv\Scripts\activate
+   python -m pip install --upgrade pip
+   python -m pip install -r requirements.txt
+   ollama pull mistral
+   python validate_setup.py
+   python demo.py
+
+Mac/Linux:
+
+   python3 -m venv .venv
+   source .venv/bin/activate
+   python -m pip install --upgrade pip
+   python -m pip install -r requirements.txt
+   ollama pull mistral
+   python validate_setup.py
+   python demo.py
+
+
+USO DIARIO
+================================================================================
+
+Si Ollama no esta activo:
+
+   ollama serve
+
+Luego:
+
+   python demo.py
+
+Menu:
+1. Prueba rapida
+2. Pruebas completas
+3. Prueba individual
+4. Salir
+
+
+VALIDACION ESPERADA
+================================================================================
+
+   python validate_setup.py
+
+Resultado esperado:
+
+   Resultado: 6/6 validaciones pasadas
+
+Tests:
+
+   python -m pytest
+
+
+ESTADO VALIDADO EN ESTE PC
+================================================================================
+
+- Python 3.12.10
+- Ollama 0.30.6
+- mistral:latest
+- validate_setup.py: 6/6 OK
+- pytest: OK
+- demo rapida: 5/5 OK
+
+================================================================================
+Siguiente lectura recomendada: QUICKSTART.txt
+================================================================================

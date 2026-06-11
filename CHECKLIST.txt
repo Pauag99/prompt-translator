@@ -1,0 +1,114 @@
+================================================================================
+                    CHECKLIST PARA PREPARAR OTRO PC
+================================================================================
+
+PREPARACION
+================================================================================
+
+[ ] Copie la carpeta `prompt-translator` al nuevo PC.
+[ ] El nuevo PC tiene Python 3.10+ instalado.
+[ ] El nuevo PC tiene Ollama instalado.
+[ ] Hay al menos 8 GB libres en disco.
+[ ] Hay internet para descargar dependencias y el modelo.
+
+
+WINDOWS - SETUP AUTOMATICO
+================================================================================
+
+[ ] Abro PowerShell dentro de `prompt-translator`.
+[ ] Ejecuto:
+
+    .\setup_new_pc.bat
+
+[ ] El script crea o reutiliza `.venv`.
+[ ] Las dependencias se instalan sin errores.
+[ ] Mistral se descarga o se verifica correctamente.
+[ ] `validate_setup.py` termina con 6/6 validaciones pasadas.
+
+
+SETUP MANUAL
+================================================================================
+
+[ ] Creo entorno virtual.
+
+Windows:
+
+    py -3 -m venv .venv
+    .\.venv\Scripts\activate
+
+Mac/Linux:
+
+    python3 -m venv .venv
+    source .venv/bin/activate
+
+[ ] Instalo dependencias:
+
+    python -m pip install --upgrade pip
+    python -m pip install -r requirements.txt
+
+[ ] Descargo modelo:
+
+    ollama pull mistral
+
+[ ] Valido:
+
+    python validate_setup.py
+
+
+PRUEBAS
+================================================================================
+
+[ ] Ejecuto demo:
+
+    python demo.py
+
+[ ] Selecciono opcion 1: prueba rapida.
+[ ] Resultado esperado: 5/5 pruebas exitosas.
+
+[ ] Ejecuto tests:
+
+    python -m pytest
+
+[ ] Resultado esperado: tests pasados.
+
+
+USO DIARIO
+================================================================================
+
+[ ] Si Ollama no responde, ejecuto:
+
+    ollama serve
+
+[ ] En otra terminal, activo `.venv`.
+[ ] Ejecuto:
+
+    python demo.py
+
+
+NO COPIAR A OTRO PC
+================================================================================
+
+[ ] No copio `.venv`.
+[ ] No copio `__pycache__`.
+[ ] No copio `.pytest_cache`.
+[ ] No intento mover modelos de Ollama salvo que sepa exactamente lo que hago.
+
+Los modelos se recrean con:
+
+    ollama pull mistral
+
+
+RESULTADO FINAL
+================================================================================
+
+[ ] Python OK
+[ ] Ollama OK
+[ ] Mistral OK
+[ ] Dependencias OK
+[ ] Validacion 6/6 OK
+[ ] Demo OK
+[ ] Tests OK
+
+Estado: listo para usar en el nuevo PC.
+
+================================================================================
