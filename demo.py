@@ -50,6 +50,13 @@ def print_result(original, result):
             print(f"\n💡 MEJORAS DETECTADAS:")
             for tip in result["tips"]:
                 print(f"   {tip}")
+
+        quality = result.get("quality")
+        if quality:
+            status = "APROBADO" if quality["passed"] else "REVISAR"
+            print(f"\nCALIDAD: {quality['score']}/100 - {status}")
+            for warning in quality["warnings"]:
+                print(f"   AVISO: {warning}")
     else:
         print(f"\n❌ ERROR: {result['error']}")
     

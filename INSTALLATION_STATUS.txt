@@ -53,6 +53,15 @@ FIXES APLICADOS POR CODEX:
   - secciones recomendadas: rol, objetivo, contexto, requisitos,
     restricciones, formato, criterios y preguntas pendientes.
   - num_predict aumentado a 800 y temperature ajustada a 0.4.
+- Agregado control automático de calidad:
+  - puntuacion de 0 a 100.
+  - deteccion de secciones obligatorias.
+  - deteccion de prompts cortos o poco estructurados.
+  - deteccion de porcentajes, formatos y tecnologias no solicitados.
+  - autocorreccion de hasta dos pasadas cuando se detectan problemas.
+  - normalizacion final mediante placeholders para evitar requisitos inventados.
+- La demo muestra puntuacion de calidad y avisos.
+- Tests unitarios reforzados para no depender de Ollama y detectar regresiones.
 
 VALIDACION EJECUTADA:
 - py -3.12 validate_setup.py
@@ -69,6 +78,15 @@ VALIDACION EJECUTADA:
   Solicitud: aplicacion web sencilla para gestionar tareas
   Resultado: prompt estructurado con rol, objetivo, contexto, requisitos,
   restricciones, formato, criterios de aceptacion y pregunta pendiente.
+
+- Auditoria final de 12 casos profesionales:
+  Resultado: 12/12 respuestas exitosas
+  Calidad aprobada: 12/12
+  Puntuacion media: 100/100
+  Advertencias finales: 0
+
+- Suite unitaria reforzada:
+  Resultado: 13 tests pasados
 
 ESTADO ACTUAL:
 - Ollama: OK
